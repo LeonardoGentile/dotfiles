@@ -27,7 +27,7 @@ if tput setaf 1 &> /dev/null; then
             DARKGREY=$(tput setaf 256)
             LIGHTBLUE=$(tput setaf 32)
             BLUE=$(tput setaf 75)
-            PURPLE=$(tput setaf 162)
+            PURPLE=$(tput setaf 135)
         else
             MAGENTA=$(tput setaf 5)
             ORANGE=$(tput setaf 4)
