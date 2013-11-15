@@ -27,6 +27,9 @@ source ~/.dotfiles/bash/bash_prompt
 bash_extra=~/.bash_extra
 [ -r "$bash_extra" ] && [ -f "$bash_extra" ] && source "$bash_extra"
 
+# BASH ENV VARIABLES EXPORT
+# =============================================
+source ~/.dotfiles/bash/bash_export
 
 # BASHMARKS
 # =============================================
@@ -55,7 +58,6 @@ source ~/.dotfiles/bashmarks/bashmarks.sh
 source ~/.dotfiles/scripts/path_tools.bash
 
 
-
 # PYTHON STARTUP
 # =============================================
 # Completion for python command line (commented out right now)
@@ -72,17 +74,12 @@ export PYTHONSTARTUP=~/.dotfiles/scripts/pystartup.py
 # http://www.conrad.id.au/2013/07/making-mac-os-x-usable-part-1-terminal.html
 # https://github.com/seebi/dircolors-solarized
 
+
+
 # Uses gls instead of ls
 alias ls='gls --color=always'
-
 # load my color scheme
 eval `gdircolors  ~/.dotfiles/data/dircolors`
-
-
-# GREP ALWAY COLORIZED (!!! THIS CAUSE PROBLEM WITH GIT-COMPLETION)
-# =============================================
-# alias grep="grep --color=always"
-# alias egrep="egrep --color=always"
 
 
 # BASH COMPLETION
@@ -154,72 +151,37 @@ export PATH
 # PATH="${PATH}:/usr/X11/bin::~/bin"
 
 
-# =============================================
-# DEVELOPMENT
-# =============================================
-
-
-# SET COMPILER VERSION
-# ===========================
-# Tmp setting for compiling
-# mysql and python
-#
-# export CC="gcc-4.0"
-# export CXX="g++-4.0"
-
-
-# FIX RANDOM COMPILATION ERROR
-# ===========================
-# Because sometimes it doesn't
-# find the libs that are actually
-# here (e.g: crt1.10.6.o)
-export MACOSX_DEPLOYMENT_TARGET=10.6
-
-
-# DON'T REMEMBER
-# ===========================
-export C_INCLUDE_PATH=$C_INCLUDE_PATH:/Developer/SDKs/MacOSX10.6.sdk/usr/include:/usr/local/include
-
-
-# HEADERS (I guess)
-# ===========================
-# I added the headers from brew (/usr/local/include)
-export LIBRARY_PATH=$LIBRARY_PATH:/Developer/SDKs/MacOSX10.6.sdk/usr/lib:/usr/local/lib/
-
-
-# FIX MySQLdb ERROR
-# ===========================
-# Fix problem when importing
-# mysql-python (MySQLdb)
-# http://stackoverflow.com/questions/4559699/python-mysqldb-and-library-not-loaded-libmysqlclient-16-dylib
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/mysql/lib/
-
-
 
 # =============================================
-# LOCALE
+# MISC
 # =============================================
-# Export locale (required in Django 1.4)
-# https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/setlocale.3.html
 
-export LANG="en_US.UTF-8"
-# Set a locale for string collation routines.  This controls alphabetic ordering in strcoll() and strxfrm().
-export LC_COLLATE="en_US.UTF-8"
-# Set a locale for the ctype(3) and multibyte(3) functions.  This controls recognition of upper and lower case,
-# alphabetic or non-alphabetic characters, and so on.
-export LC_CTYPE="en_US.UTF-8"
-# Set a locale for message catalogs, see catopen(3) function.
-export LC_MESSAGES="en_US.UTF-8"
-# Set a locale for formatting monetary values; this affects the localeconv() function.
-export LC_MONETARY="en_US.UTF-8"
-# Set a locale for formatting numbers.  This controls the formatting of decimal points in
-# input and output of floating point numbers in functions such as printf() and scanf(), as
-# well as values returned by localeconv().
-export LC_NUMERIC="en_US.UTF-8"
-# Set a locale for formatting dates and times using the strftime() function.
-export LC_TIME="en_US.UTF-8"
-# Set the entire locale generically.
-export LC_ALL="en_US.UTF-8"
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+        shopt -s "$option" 2> /dev/null
+done
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
+
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+complete -W "NSGlobalDomain" defaults
+
+# Add `killall` tab completion for common apps
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
+
 
 
 # Dotfiles inspired by many people
