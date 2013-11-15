@@ -1,19 +1,25 @@
 #!/bin/bash
 # See: http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
-############################
-# ./Install.sh
+
+# USAGE
+# =============================================
+# sh ./Install.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/.dotfiles
-############################
 
-########## Variables
+# VARIABLES
+# =============================================
 
-dir=~/.dotfiles                     # dotfiles directory
-olddir=~/.dotfiles_old              # old dotfiles backup directory
+dir=~/.dotfiles             # dotfiles directory
+olddir=~/.dotfiles_old      # old dotfiles backup directory
+bindir=~/bin                # bin directory
+oldbindir=~/bin_old         # old bin backup directory
 
 # list of files/folders to symlink in homedir
-files=".bash_profile .bashrc .gitattributes .gitconfig .gitignore_global .inputrc .osx"
+files=".bash_profile .bashrc .gitattributes .gitconfig .gitignore_global .inputrc .osx bin"
 
-##########
+
+# =============================================#
+
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -32,3 +38,9 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
 done
+
+# Moving .bash_extra file
+echo "Moving .bash_extra from ~ to $olddir"
+mv ~/.bash_extra $olddir
+echo "Creating empty .bash_extra file in home directory."
+cp $dir/.bash_extra ~/.bash_extra
