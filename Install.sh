@@ -15,7 +15,7 @@ bindir=~/bin                # bin directory
 oldbindir=~/bin_old         # old bin backup directory
 
 # list of files/folders to symlink in homedir
-files=".bash_profile .bashrc .gitattributes .gitconfig .gitignore_global .inputrc .osx .gvimrc .hushlogin .vimrc .wgetrc bin"
+files=".bash_profile .bashrc .gitattributes .gitconfig .gitignore_global .inputrc .osx .gvimrc .hushlogin .vimrc .wgetrc bin/"
 
 
 # =============================================#
@@ -33,7 +33,7 @@ echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
+    echo "Moving $file from ~ to $olddir"
     mv ~/$file $olddir
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
