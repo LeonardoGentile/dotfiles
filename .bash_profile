@@ -1,11 +1,35 @@
 #!/usr/bin/env bash
 
+# VIRTUALENVWRAPPER (should go before bash_functions)
+# =============================================
+# Check the workon_cwd function in bash_prompt or
+# the .virtualenv/postactivate file to customize the
+# shell prompt after the virtualenv activation
+export WORKON_HOME="$HOME/.virtualenvs"
+source /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
+
 
 # BASH_ALIASES
+# =============================================
 source ~/.dotfiles/bash/bash_aliases
+
+# BASH FUNCTIONS
+# =============================================
+source ~/.dotfiles/bash/bash_functions
+
+# BASH PROMPT CUSTOMIZATION
+# =============================================
+source ~/.dotfiles/bash/bash_prompt
+
+# EXTRA
+# =============================================
+# ~/.extra can be used for other settings you don’t want to commit.
+bash_extra=~/.bash_extra
+[ -r "$bash_extra" ] && [ -f "$bash_extra" ] && source "$bash_extra"
 
 
 # BASHMARKS
+# =============================================
 # http://bilalh.github.com/2012/01/14/enchanted-bashmarks-terminal-directory-bookmarks/
 source ~/.dotfiles/bashmarks/bashmarks.sh
 
@@ -15,6 +39,7 @@ source ~/.dotfiles/bashmarks/bashmarks.sh
 # if [ -f ~/.dotfiles/scripts/git-prompt.sh ]; then
 #     source ~/.dotfiles/scripts/git-prompt.sh
 # fi
+
 
 # NEWTAB (I'm not using it because I need to fix it for iTerm)
 # =============================================
@@ -29,29 +54,6 @@ source ~/.dotfiles/bashmarks/bashmarks.sh
 # lists like the canonical $PATH variable.
 source ~/.dotfiles/scripts/path_tools.bash
 
-
-# COLORS DEFINITIONS (Unusued)
-# =============================================
-# source ~/.dotfiles/data/ps1_colors
-
-
-# VIRTUALENVWRAPPER (should go before bash_functions)
-# =============================================
-# Check the workon_cwd function in bash_function or
-# the .virtualenv/postactivate file to customize the
-# shell prompt after the virtualenv activation
-export WORKON_HOME="$HOME/.virtualenvs"
-source /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
-
-
-# BASH FUNCTIONS
-# =============================================
-source ~/.dotfiles/bash/bash_functions
-
-
-# BASH PROMPT CUSTOMIZATION
-# =============================================
-source ~/.dotfiles/bash/bash_prompt
 
 
 # PYTHON STARTUP
@@ -128,7 +130,7 @@ eval "$(grunt --completion=bash)"
 
 # BEWARE: Avoid 3) cause it overrides the default PATH set in /etc/paths.
 
-# Local bin nella mia directory (scripts e cazzate varie)
+# Local bin in my home (scripts various stuff)
 PATH="$PATH:~/bin"
 
 # Anaconda ipython (TO REMOVE)
@@ -137,10 +139,10 @@ PATH="$PATH:~/bin"
 # gcc and other dev stuff
 PATH="${PATH}:/Developer/usr/bin"
 
-### Added by the Heroku Toolbelt
+# Heroku Toolbelt
 PATH="$PATH:/usr/local/heroku/bin"
 
-# Setting PATH for Python 2.7
+# PATH for Python 2.7
 PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/2.7/bin"
 
 # MySql
@@ -218,10 +220,6 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 # Set the entire locale generically.
 export LC_ALL="en_US.UTF-8"
-
-
-
-alias task="task rc:/home/sam/Dropbox/task/Task.txt"
 
 
 # Dotfiles inspired by many people
