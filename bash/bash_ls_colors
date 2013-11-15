@@ -3,7 +3,9 @@
 # LS COLORS
 # =================
 
-# NON USO LS MA GLS in .profile quindi questo file è inutilizzato
+# I'm not currently using "ls" but "gls", that is the "GNU ls"
+# as defined in .bash_profile.
+# So I'm not using this file.
 
 # The values in LSCOLORS are codes corresponding to different colors for different types of files.
 # The letter you use indicates which color to use, and the position in the string indicates
