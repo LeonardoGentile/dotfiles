@@ -1,7 +1,7 @@
 [core]
 	quotepath = false
 	excludesfile = ~/.gitignore_global
-    attributesfile = ~/.gitattributes
+        attributesfile = ~/.gitattributes
 	editor = sub -n -w
 [color "branch"]
         current = yellow reverse
