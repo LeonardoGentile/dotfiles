@@ -1,4 +1,3 @@
-# add the user section with my data
 [core]
 	quotepath = false
 	excludesfile = ~/.gitignore_global
@@ -17,16 +16,6 @@
         added = yellow
         changed = green
         untracked = cyan
-[merge]
-        log = true
-[mergetool]
-	keepBackup = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/Coding/Repository/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [color]
 	ui = true
 	diff = true
@@ -36,8 +25,7 @@
 	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
 [merge]
 	tool = diffmerge
+    log = true
 [mergetool "diffmerge"]
 	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
 	trustExitCode = true
-
-
