@@ -84,9 +84,12 @@ eval `gdircolors  ~/.dotfiles/data/dircolors`
 
 # BASH COMPLETION
 # =============================================
+# If possible, add tab completion for many more commands
+if [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion
 # Installed with Brew
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+elif [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
 fi
 
 
@@ -129,9 +132,6 @@ eval "$(grunt --completion=bash)"
 
 # Local bin in my home (scripts various stuff)
 PATH="$PATH:~/bin"
-
-# Anaconda ipython (TO REMOVE)
-# PATH="$PATH:~/bin/anaconda/bin"
 
 # gcc and other dev stuff
 PATH="${PATH}:/Developer/usr/bin"
