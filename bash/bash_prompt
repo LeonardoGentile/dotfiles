@@ -1,3 +1,4 @@
+# NOT USED ANYMORE
 # @gf3’s Sexy Bash Prompt, inspired by “Extravagant Zsh Prompt”
 # Shamelessly copied from https://github.com/gf3/dotfiles
 
@@ -59,6 +60,9 @@ function git_info() {
         dirty=$(git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ]&& echo -e "*")
 
         echo ${BOLD}${YELLOW}\($branch$dirty\) ${DARKGREY}
+
+'$(echo -n "${PWD/#$HOME/~}" | awk "$SHORT_W_AWK")'
+
 }
 
 
@@ -105,9 +109,7 @@ else
 fi
 
 
-PS1="\$(git_info)${BOLD}\[${USER_COLOR}\]\u\[${DARKGREY}\] at \[${ORANGE}\]\h${RESET}\[${DARKGREY}\]: ${BOLD}\[${BLUE}\]${SHORT_W}\[${DARKGREY}\] \$${RESET} "
-
-
+PS1="\$(git_info)\[${BOLD}\]\[${USER_COLOR}\]\u\[${DARKGREY}\] at \[${ORANGE}\]\h\[${RESET}\]\[${DARKGREY}\]: \[${BOLD}\]\[${BLUE}\]${SHORT_W}\[${DARKGREY}\] \$\[${RESET}\] "
 
 # GIT PROJECTS - VIRTUALENV ACTIVATION
 # =================================================

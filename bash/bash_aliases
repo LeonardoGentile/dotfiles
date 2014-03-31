@@ -37,8 +37,16 @@ alias kp="ps auxwww"
 # Screen saver
 alias ss="/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background &"
 
-# For Django Runserver
+# Django Stuff
+# ============
 alias run="python manage.py runserver"
+# shell_plus with python command history support
+alias shell_plus="python manage.py shell_plus --use-pythonrc"
+
+# Redis
+# ============
+alias rs="redis-server ~/.redis/redis.conf"
+
 
 # MySql Start & Stop
 alias mysql_start="sudo /Library/StartupItems/MySQLCOM/MySQLCOM start"
@@ -92,6 +100,10 @@ alias gr='git rebase'
 alias grc='git rebase --continue'
 alias gs='git status'
 alias guci='git reset --soft HEAD^' # undo last commit
+alias gs='git status'
+alias gl='git log'
+alias gd='git diff'
+alias ga='git add'
 
 
 # ========================================

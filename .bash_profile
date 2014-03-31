@@ -19,11 +19,19 @@ source ~/.dotfiles/bash/bash_functions
 
 # BASH PROMPT CUSTOMIZATION
 # =============================================
-source ~/.dotfiles/bash/bash_prompt
+# source ~/.dotfiles/bash/bash_prompt
+
+# I now use powerline shell
+
+function _update_ps1() {
+       export PS1="$(~/.dotfiles/powerline-shell/powerline-shell.py $? --cwd-max-depth 4 --colorize-hostname  2> /dev/null)"
+    }
+
+    export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
 # EXTRA
 # =============================================
-# ~/.extra can be used for other settings you don’t want to commit.
+# ~/.extra can be used for other settings you don't want to commit.
 bash_extra=~/.bash_extra
 [ -r "$bash_extra" ] && [ -f "$bash_extra" ] && source "$bash_extra"
 
@@ -114,6 +122,14 @@ complete -o default -F _pip_completion pip
 eval "$(grunt --completion=bash)"
 
 
+# DJANGO COMPLETION
+# ===========================
+if [ -f ~/.dotfiles/bash/bash_django_completion ]; then
+    source ~/.dotfiles/bash/bash_django_completion
+fi
+
+
+
 # CYCLIC TAB-COMPLETION
 # ===========================
 # bind '"\t":menu-complete'
@@ -133,6 +149,9 @@ eval "$(grunt --completion=bash)"
 # Local bin in my home (scripts various stuff)
 PATH="$PATH:~/bin"
 
+# Redis (manually installed)
+PATH="$PATH:~/bin/redis"
+
 # gcc and other dev stuff
 PATH="${PATH}:/Developer/usr/bin"
 
@@ -144,6 +163,10 @@ PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/2.7/bin"
 
 # MySql
 PATH="${PATH}:/usr/local/mysql/bin"
+
+# SenchaSDKTools
+PATH="${PATH}:/Applications/Coding/SenchaSDKTools-2.0.0-beta3"
+export SENCHA_SDK_TOOLS_2_0_0_BETA3="/Applications/Coding/SenchaSDKTools-2.0.0-beta3"
 
 export PATH
 
@@ -181,7 +204,6 @@ complete -W "NSGlobalDomain" defaults
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
-
 
 
 # Dotfiles inspired by many people

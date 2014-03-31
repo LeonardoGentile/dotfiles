@@ -1,21 +1,21 @@
 [core]
 	quotepath = false
 	excludesfile = ~/.gitignore_global
-        attributesfile = ~/.gitattributes
+    # attributesfile = ~/.gitattributes
 	editor = sub -n -w
 [color "branch"]
-        current = yellow reverse
-        local = yellow
-        remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 [color "diff"]
-        meta = yellow bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
+    meta = yellow
+    frag = magenta
+    old = red
+    new = green
 [color "status"]
-        added = yellow
-        changed = green
-        untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 [color]
 	ui = true
 	diff = true
@@ -29,3 +29,5 @@
 [mergetool "diffmerge"]
 	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
 	trustExitCode = true
+[mergetool]
+	keepBackup = true
